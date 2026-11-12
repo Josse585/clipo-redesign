@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clipo · Convierte videos en clips virales</title>
+  <meta name="description" content="Clipo transforma tus videos en clips verticales con inteligencia artificial y subtítulos animados.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="/" id="brand"><span class="brand-mark" aria-hidden="true">▶</span> Clipo</a>
+      <nav class="userbox" id="userBox" hidden>
+        <span class="badge" id="planBadge">Gratis</span>
+        <span class="email" id="userEmail"></span>
+        <button class="link" id="logoutBtn" type="button">Salir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="banner error" id="fatalBanner" hidden></div>
+
+    <!-- Visitante sin sesión: autenticación únicamente con Google -->
+    <section id="viewLanding" class="hero landing-clipo" hidden>
+      <div class="hero-text">
+        <div class="eyebrow"><span class="pulse-dot"></span> TU ESTUDIO CREATIVO CON IA</div>
+        <h1>De un video largo a <span class="hl">clips que enganchan.</span></h1>
+        <p class="lead">Clipo encuentra los mejores momentos, crea clips verticales y añade subtítulos dinámicos listos para tus redes.</p>
+        <ul class="ticks">
+          <li>Encuentra momentos destacados con IA</li>
+          <li>Subtítulos animados con palabras resaltadas</li>
+          <li>Empieza gratis con límites diarios</li>
+        </ul>
+        <div class="landing-note"><span class="note-icon">✦</span><span>Tu contenido merece destacar.</span></div>
+      </div>
+      <div class="card auth google-auth">
+        <div class="auth-symbol" aria-hidden="true">▶</div>
+        <p class="auth-kicker">BIENVENIDO A CLIPO</p>
+        <h2>Entra y empieza a crear</h2>
+        <p class="auth-copy">Usa tu cuenta de Google para acceder a tu estudio de clips.</p>
+        <button class="btn google-btn" id="googleSignIn" type="button">
+          <svg aria-hidden="true" viewBox="0 0 48 48" width="22" height="22"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 3.07 13.22l7.98 6.19C12.93 13.72 18.01 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 37.96 46.98 31.86 46.98 24.55z"/><path fill="#FBBC05" d="M10.05 28.59A14.4 14.4 0 0 1 9.27 24c0-1.59.27-3.13.76-4.59l-7.98-6.2A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.57 10.78l7.48-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.44-4.89 2.3-8.18 2.3-5.99 0-11.07-4.22-12.89-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48z"/></svg>
+          <span>Continuar con Google</span>
+        </button>
+        <p class="msg" id="authMsg" role="status"></p>
+        <p class="auth-terms">Al continuar, aceptas usar Clipo de forma responsable y subir solo contenido que tengas permiso para utilizar.</p>
+        <div class="auth-secure"><span>✦</span> Acceso seguro con Google</div>
+      </div>
+    </section>
+
+    <!-- Usuario con sesión -->
+    <section id="viewApp" hidden>
+      <div class="card status" id="statusCard">
+        <div class="status-row">
+          <div><strong id="statusPlan">Plan Gratis</strong><div class="small muted" id="statusLimits"></div></div>
+          <a class="btn ghost" href="#plans" id="upgradeLink">Mejorar plan</a>
+        </div>
+        <div class="bar"><div class="bar-fill" id="usageFill"></div></div>
+        <div class="small muted" id="usageText">Cargando…</div>
+      </div>
+
+      <div class="card">
+        <h2>1. Elige tu video</h2>
+        <label class="drop" id="drop" for="fileInput">
+          <input type="file" id="fileInput" accept="video/*">
+          <span class="drop-title" id="dropTitle">Toca aquí para elegir un video</span>
+          <span class="small muted">MP4, MOV o WEBM · recomendado menos de 1.5 GB</span>
+        </label>
+        <div class="banner info" id="fileInfo" hidden></div>
+
+        <h2 class="mt">2. Ajustes</h2>
+        <div class="grid-opts">
+          <label>Idioma del video
+            <select id="lang">
+              <option value="es" selected>Español</option>
+              <option value="en">Inglés</option>
+              <option value="pt">Portugués</option>
+              <option value="">Detectar automáticamente</option>
+            </select>
+          </label>
+          <label>Duración de los clips
+            <select id="clipLength"></select>
+          </label>
+          <label>Cantidad de clips
+            <select id="clipCount"></select>
+          </label>
+          <label>Formato
+            <select id="layout">
+              <option value="fill" selected>Recorte centrado (pantalla completa)</option>
+              <option value="fit">Video completo con fondo difuminado</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="consent">
+          <span>Confirmo que este video es mío o tengo permiso para usarlo.</span>
+        </label>
+        <button class="btn primary big" id="startBtn" type="button" disabled>Crear mis clips</button>
+        <div class="banner error" id="alertBox" hidden></div>
+      </div>
+
+      <div class="card" id="progressCard" hidden>
+        <h2 id="progressTitle">Procesando…</h2>
+        <div class="bar"><div class="bar-fill" id="progressFill"></div></div>
+        <p class="small muted" id="progressText"></p>
+        <p class="small warn">Mantén esta pestaña abierta y visible mientras se crean los clips.</p>
+      </div>
+
+      <section id="results" class="results" aria-live="polite"></section>
+    </section>
+
+    <section id="plans" class="plans-section">
+      <h2 class="center">Planes</h2>
+      <p class="center muted">Empieza gratis. Mejora cuando necesites procesar más videos.</p>
+      <div class="plans" id="plansGrid"></div>
+      <p class="small muted center" id="plansNote"></p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p>Sube solo videos propios o con permiso de su autor. Eres responsable del contenido que procesas.</p>
+      <p id="supportLine"></p>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
