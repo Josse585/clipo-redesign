@@ -1,0 +1,38 @@
+[
+  {
+    "test": "audio",
+    "file": "four-minutes-431MiB.mp4",
+    "mode": "incremental",
+    "seconds": 240,
+    "rms": 0.08833709915493573,
+    "frequency": 439.99583333333334,
+    "elapsedMs": 1307.5999999977648
+  },
+  {
+    "test": "audio",
+    "file": "four-minutes-1GiB.mp4",
+    "mode": "incremental",
+    "seconds": 240,
+    "rms": 0.08833709915493573,
+    "frequency": 439.99583333333334,
+    "elapsedMs": 1140
+  },
+  {
+    "test": "render",
+    "duration": 45,
+    "layout": "fill",
+    "mode": "webcodecs",
+    "mime": "video/webm",
+    "bytes": 14426674,
+    "elapsedMs": 9692.60000000149
+  },
+  {
+    "test": "render",
+    "duration": 90,
+    "layout": "fit",
+    "mode": "webcodecs",
+    "mime": "video/webm",
+    "bytes": 29931715,
+    "elapsedMs": 18885.79999999702
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "original_zip_sha256": "639fa250966198c16e4d317c68678ac90c4ffd3251fe06d308d35efc4318c23f",
+  "retained_delivery_sha256": "fae0b1e4bdc26831edbe9c8579fd03951ef08b58bd343b13195645b3096d1b0e",
+  "comparison": [
+    {
+      "path": "public/index.html",
+      "original_bytes": 7163,
+      "original_sha256": "ccb5f36df20324ab6e8c8cd1483978cd838ea2035a78ea4a819f3895635b4a56",
+      "release_bytes": 21434,
+      "release_sha256": "b70691f6c3f510333c974f7d8286ae612ca9735b3838976d15373ef2ff844360",
+      "changed": true
+    },
+    {
+      "path": "public/style.css",
+      "original_bytes": 10180,
+      "original_sha256": "f127f09851d0ac348531b7f607a3339f7ee46de7076ef5ebcf6148a9e779dba9",
+      "release_bytes": 50963,
+      "release_sha256": "25943505b440af41955602db07211291df10f915ae998aff0b462be0ea8dc3a8",
+      "changed": true
+    },
+    {
+      "path": "public/app.js",
+      "original_bytes": 22905,
+      "original_sha256": "4573a27413b6218e535639d1983c28f24099630627c4cbba895296c26ef0fc3a",
+      "release_bytes": 27109,
+      "release_sha256": "8c82efac09b92f9fc8f50996c48d166095b7cf1092ca8ee167006074114b320e",
+      "changed": true
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es" data-type="software">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRIX CLIP · Tus mejores momentos, en vertical</title>
+<meta name="description" content="Transforma tus videos largos en clips verticales con subtítulos. Crea contenido para Reels, TikTok y Shorts con DRIX CLIP.">
+<meta name="theme-color" content="#121413">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/manrope-regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<header class="top"><div class="wrap top-inner">
+<a class="brand" href="/" id="brand" aria-label="DRIX CLIP, inicio"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><path fill="currentColor" d="M4 4h12v8H4zm16 0h12v8H20zM4 16h12v16H4zm16 0 12 8-12 8z"/></svg><span>DRIX<span class="brand-light">CLIP</span><span class="brand-period">.</span></span></a>
+<nav class="desktop-nav" aria-label="Navegación principal"><a href="#how">Cómo funciona</a><a href="#plans">Planes</a><a href="#faq">Preguntas frecuentes</a></nav>
+<a class="btn nav-cta" href="#googleSignIn" id="headerCta">Empezar gratis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a>
+<nav class="userbox" id="userBox" aria-label="Mi cuenta" hidden><span class="badge" id="planBadge">Gratis</span><span class="email" id="userEmail"></span><button class="link" id="logoutBtn" type="button">Salir</button></nav>
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-controls="mobileNav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div><nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil" hidden><a href="#how">Cómo funciona</a><a href="#plans">Planes</a><a href="#faq">Preguntas frecuentes</a></nav></header>
+<main id="main" class="wrap">
+<div class="banner error" id="fatalBanner" role="alert" hidden></div>
+<section id="viewLanding" class="landing">
+<div class="hero">
+<div class="hero-text"><h1>Un gran video.<br><span class="accent">Muchos buenos<br>momentos.</span></h1>
+<p class="lead">Convierte tus videos largos en clips verticales que dan ganas de ver. Con subtítulos, con tu estilo y listos para compartir.</p>
+<div class="hero-actions"><button class="btn primary google-btn" id="googleSignIn" type="button">          <svg aria-hidden="true" viewBox="0 0 48 48" width="22" height="22"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 3.07 13.22l7.98 6.19C12.93 13.72 18.01 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.76 7.18l7.73 6C44.42 37.96 46.98 31.86 46.98 24.55z"/><path fill="#FBBC05" d="M10.05 28.59A14.4 14.4 0 0 1 9.27 24c0-1.59.27-3.13.76-4.59l-7.98-6.2A23.9 23.9 0 0 0 0 24c0 3.87.93 7.52 2.57 10.78l7.48-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.44-4.89 2.3-8.18 2.3-5.99 0-11.07-4.22-12.89-9.91l-7.98 6.19C6.51 43.62 14.62 48 24 48z"/></svg>
+<span>Empezar gratis con Google</span></button><a class="text-link demo-link" href="#preview">Explorar el editor <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></a></div>
+<p class="start-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> 30 minutos al día gratis <span>·</span> Sin tarjeta</p>
+<p class="msg" id="authMsg" role="status"></p>
+<div class="platforms"><span>HECHO PARA TU PRÓXIMO</span><div><b>Reel</b><i></i><b>TikTok</b><i></i><b>Short</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></div></div>
+</div>
+<div class="hero-scene" id="heroScene" data-scene="clips" role="group" aria-label="Ejemplo visual: un podcast convertido en clips verticales">
+<div class="scene-toolbar"><span>Tu contenido, en vertical</span><button class="scene-motion" id="sceneMotion" type="button" aria-pressed="false" aria-label="Pausar el parallax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button></div>
+<div class="scene-composition">
+<div class="scene-original" data-depth="0.35"><div class="source-top"><span><i></i> Tu podcast</span><span>ORIGINAL · 16:9</span></div><div class="source-picture"><img src="assets/podcast.jpg" alt="Creadora grabando un podcast frente a un micrófono" width="1600" height="2400" fetchpriority="high"><span class="source-time">12:48</span></div><div class="source-track" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="scene-clip scene-clip-main" data-depth="1"><img src="assets/podcast.jpg" alt="Ejemplo de recorte vertical del podcast" width="1600" height="2400"><span class="clip-format">9:16</span><div class="scene-subtitles">Tus ideas<br>merecen<br><mark>verse.</mark></div><div class="scene-clip-bottom"><span>Reel / Short</span><span>00:32</span></div></div>
+<div class="scene-clip scene-clip-secondary" data-depth="1.5"><img src="assets/podcast.jpg" alt="Segundo ejemplo de clip con subtítulos" width="1600" height="2400"><span class="clip-format">SUBTÍTULOS</span><div class="scene-subtitles">Un momento.<br><mark>Tu historia.</mark></div><div class="scene-clip-bottom"><span>Clip 02</span><span>00:24</span></div></div>
+<div class="scene-output" data-depth="0.6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>El mismo contenido.<br><strong>Otra forma de contar.</strong></span></div>
+</div>
+<div class="scene-footer"><div class="scene-switch" role="group" aria-label="Comparar formatos"><button type="button" data-scene-mode="original" aria-pressed="false">El original</button><button type="button" data-scene-mode="clips" aria-pressed="true">Los clips <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h16m-5-5 5 5-5 5"/></svg></button></div><span>COMPOSICIÓN DE EJEMPLO</span></div>
+</div></div>
+<div class="hero-bottom"><span>DE TU CÁMARA AL FEED.</span><span>Podcasts <i>/</i> Entrevistas <i>/</i> Tutoriales <i>/</i> Ideas que compartir</span><a href="#how" aria-label="Descubrir cómo funciona">↓</a></div>
+<section class="live-editor-section" id="tryEditor"><div class="section-heading"><h2>Ahora, dale<br>tu propio estilo.</h2><p>Prueba los subtítulos y el encuadre.<br>Después, imagínalo con tu contenido.</p></div><div class="editor" id="preview" aria-label="Editor de muestra interactivo">
+<div class="editor-top"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>Tu próximo clip</span><span class="preview-label">VISTA PREVIA</span></div>
+<div class="editor-body"><aside class="editor-settings"><div class="setting-heading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 10h4m2 0h4M7 14h4m2 0h4"/></svg>Subtítulos</div>
+<div class="caption-styles" role="group" aria-label="Estilo de subtítulos"><button class="style-option selected" type="button" data-style="highlight" aria-pressed="true"><span class="style-sample highlight-sample">Tu <mark>historia.</mark></span><span>Resaltado</span></button><button class="style-option" type="button" data-style="clean" aria-pressed="false"><span class="style-sample clean-sample">Tu historia.</span><span>Minimalista</span></button><button class="style-option" type="button" data-style="bold" aria-pressed="false"><span class="style-sample bold-sample">TU HISTORIA.</span><span>Impacto</span></button></div>
+<label class="format-label" for="demoFormat">Formato</label><select id="demoFormat"><option value="vertical">9:16 · Vertical</option><option value="square">1:1 · Cuadrado</option><option value="wide">16:9 · Horizontal</option></select>
+<label class="caption-toggle"><input type="checkbox" id="demoCaptions" checked><span>Subtítulos visibles</span></label>
+</aside><div class="preview-stage"><div class="preview-canvas" id="previewCanvas" data-style="highlight" data-format="vertical"><img src="assets/studio.jpg" alt="Micrófono en un estudio de grabación" width="1000" height="667" fetchpriority="high"><video id="demoVideo" playsinline hidden></video><span class="canvas-tag" id="canvasTag">EJEMPLO DE ESTILO</span><div class="sample-captions" id="sampleCaptions">Tu historia<br>merece <mark>verse.</mark></div></div><p class="preview-hint" id="previewHint">Prueba un estilo. Hazlo tuyo.</p></div></div>
+<div class="editor-timeline"><button id="demoPlay" class="icon-button" type="button" aria-label="Reproducir muestra de subtítulos"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><span class="timecode" id="demoTime">00:00</span><input id="demoScrub" type="range" min="0" max="12" value="0" step="0.1" aria-label="Posición de la muestra"><span class="timecode" id="demoDuration">00:12</span></div>
+<div class="editor-bottom"><span><span class="status-dot"></span> Tu contenido, tu estilo</span><label class="upload-preview" for="previewFile">Probar mi video <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><input id="previewFile" type="file" accept="video/*" class="sr-only"></label></div>
+</div></section>
+<section class="workflow" id="how"><div class="section-heading"><h2>Tú tienes el contenido.<br>Nosotros, el siguiente corte.</h2><p>Del video original al clip que quieres publicar.<br>Sin perderte entre herramientas.</p></div>
+<div class="workflow-grid"><article><div class="flow-visual source-visual"><img src="assets/studio.jpg" alt="Estudio de grabación de audio" loading="lazy" width="1000" height="667"><span class="file-chip">mi-podcast.mp4</span></div><h3>Sube tu video</h3><p>Elige un archivo MP4, MOV o WEBM. Tu próxima creación empieza con lo que ya grabaste.</p></article><article><div class="flow-visual transcript-visual"><div class="transcript-line">A veces la mejor idea</div><div class="transcript-line">aparece cuando menos</div><div class="selected-line">te lo esperas.</div><div class="selection-label">Un momento para compartir</div></div><h3>Encuentra tus momentos</h3><p>Analizamos la transcripción para seleccionar fragmentos y convertirlos en clips.</p></article><article><div class="flow-visual export-visual"><div class="export-frame"><span>UN CLIP.<br><mark>TU VOZ.</mark></span></div><div class="export-options"><span>9:16</span><span>Subtítulos</span><span>Descargar ↗</span></div></div><h3>Descarga y comparte</h3><p>Clips verticales con subtítulos para llevar tu contenido a Reels, TikTok y Shorts.</p></article></div></section>
+</section>
+    <!-- Usuario con sesión -->
+    <section id="viewApp" hidden>
+      <div class="workspace-heading"><div><p class="muted">Tu espacio creativo</p><h1>Vamos a crear algo bueno.</h1></div><a class="text-link" href="#history">Ver mis creaciones ↗</a></div>
+      <div class="card status" id="statusCard">
+        <div class="status-row">
+          <div><strong id="statusPlan">Plan Gratis</strong><div class="small muted" id="statusLimits"></div></div>
+          <a class="btn ghost" href="#plans" id="upgradeLink">Mejorar plan</a>
+        </div>
+        <div class="bar"><div class="bar-fill" id="usageFill"></div></div>
+        <div class="small muted" id="usageText">Cargando…</div>
+      </div>
+
+      <div class="card">
+        <h2>Elige tu video</h2>
+        <label class="drop" id="drop" for="fileInput">
+          <input type="file" id="fileInput" accept="video/*">
+          <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5h16v-5"/></svg><span class="drop-title" id="dropTitle">Arrastra tu video o haz clic para elegirlo</span>
+          <span class="small muted">MP4, MOV o WebM</span>
+        </label>
+        <div class="banner info" id="fileInfo" hidden></div>
+
+        <h2 class="mt">Dale tu estilo</h2>
+        <div class="grid-opts">
+          <label>Idioma del video
+            <select id="lang">
+              <option value="es" selected>Español</option>
+              <option value="en">Inglés</option>
+              <option value="pt">Portugués</option>
+              <option value="">Detectar automáticamente</option>
+            </select>
+          </label>
+          <label>Duración de los clips
+            <select id="clipLength"></select>
+          </label>
+          <label>Cantidad de clips
+            <select id="clipCount"></select>
+          </label>
+          <label class="check option-check"><input type="checkbox" id="showCaptions" checked><span>Incluir subtítulos en los clips</span></label>
+          <label>Encuadre
+            <select id="outputFormat"><option value="vertical">Vertical · 9:16</option><option value="square">Cuadrado · 1:1</option><option value="horizontal">Horizontal · 16:9</option></select>
+          </label>
+          <label>Ajuste del video
+            <select id="layout">
+              <option value="fill" selected>Recorte centrado (pantalla completa)</option>
+              <option value="fit">Video completo con fondo difuminado</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="consent">
+          <span>Confirmo que este video es mío o tengo permiso para usarlo.</span>
+        </label>
+        <div class="process-actions"><button class="btn primary big" id="startBtn" type="button" disabled>Crear mis clips</button><button class="btn ghost" id="cancelBtn" type="button" hidden>Cancelar proceso</button></div>
+        <div class="banner error" id="alertBox" hidden></div>
+      </div>
+
+      <div class="card" id="progressCard" hidden>
+        <h2 id="progressTitle">Procesando…</h2>
+        <div class="bar"><div class="bar-fill" id="progressFill"></div></div>
+        <p class="small muted" id="progressText"></p>
+        <p class="small warn">Mantén esta pestaña abierta y visible mientras se crean los clips.</p>
+      </div>
+
+      <section id="results" class="results" aria-live="polite"></section>
+
+      <section class="card mt" id="history">
+        <div class="status-row">
+          <div>
+            <h2>Mis creaciones</h2>
+            <p class="small muted">Tus clips se guardan automáticamente y se eliminan después de 24 horas.</p>
+          </div>
+          <button class="btn ghost" id="refreshHistory" type="button">Actualizar</button>
+        </div>
+        <div id="historyResults" class="results" aria-live="polite">
+          <p class="small muted">Cargando tus creaciones…</p>
+        </div>
+      </section>
+    </section>
+
+
+<section id="plans" class="plans-section"><div class="section-heading"><h2>Empieza con una idea.<br>Crece a tu ritmo.</h2><p>Un plan gratis para empezar.<br>Más posibilidades cuando las necesites.</p></div><div class="plans" id="plansGrid"><p class="muted">Cargando planes…</p></div><p class="small muted center" id="plansNote"></p></section>
+<section class="faq-section" id="faq"><div><h2>Antes de darle<br>a crear.</h2><p class="muted">Lo que necesitas saber para empezar.</p></div><div class="faq-list"><details><summary>¿Puedo probarlo gratis?</summary><p>Sí. El plan Gratis incluye 30 minutos de video al día y hasta 3 clips por video, en 720p con marca de agua. Accede con tu cuenta de Google para empezar.</p></details><details><summary>¿Qué tipo de videos puedo subir?</summary><p>Archivos MP4, MOV o WEBM. Los videos con voz clara, como podcasts, entrevistas y tutoriales, permiten obtener mejores transcripciones.</p></details><details><summary>¿Cómo se crean y guardan los clips?</summary><p>Tus creaciones estarán disponibles durante 24 horas. Descarga tus clips para conservarlos y compartirlos cuando quieras.</p></details><details><summary>¿Puedo cancelar el plan Pro?</summary><p>Sí. Puedes cancelar tu suscripción desde los pagos automáticos de tu cuenta de PayPal.</p></details><details><summary>¿La vista previa genera clips?</summary><p>La muestra permite probar formatos y estilos con subtítulos de ejemplo. Si eliges un video, se reproduce localmente y no se sube. Para generar clips y subtítulos de tu contenido, accede con Google y utiliza el estudio.</p></details></div></section>
+</main><footer class="foot"><div class="wrap"><div class="footer-top"><a class="brand" href="#">DRIX<span class="brand-light">CLIP</span><span class="brand-period">.</span></a><p>Más de tu contenido. Más de ti.</p><a class="text-link" href="#main">Volver arriba ↑</a></div><div class="footer-bottom"><p>Sube solo contenido propio o que tengas permiso para utilizar.</p><p>Fotografía ilustrativa: <a href="https://www.pexels.com/photo/woman-in-brown-sweater-sitting-on-chair-6953867/" rel="noreferrer" target="_blank">Pexels</a> y <a href="https://unsplash.com" rel="noreferrer" target="_blank">Unsplash</a></p><p id="supportLine"></p></div></div></footer>
+<script type="module" src="interactions.js"></script><script type="module" src="app.js"></script>
+</body></html>

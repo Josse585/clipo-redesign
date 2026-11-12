@@ -1,0 +1,20 @@
+{
+  "name": "drix-clip",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "test": "node tests/run.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "test:media": "playwright test",
+    "build:demo": "node scripts/build-pages.mjs && node scripts/build-export-demo.mjs",
+    "build:pages": "node scripts/build-pages.mjs"
+  },
+  "dependencies": {
+    "mediabunny": "1.65.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "esbuild": "0.28.2"
+  }
+}

@@ -1,0 +1,17 @@
+import { studioPage } from './studio-page.mjs';
+import { build } from 'esbuild';
+import { readFile, writeFile } from 'node:fs/promises';
+const root = new URL('../',import.meta.url);
+const worker = (await build({entryPoints:[new URL('../public/lib/media-worker.js',import.meta.url).pathname],bundle:true,write:false,format:'esm',platform:'browser',minify:true,target:'es2022'})).outputFiles[0].text;
+const main = (await build({entryPoints:[new URL('../public/studio-entry.js',import.meta.url).pathname],bundle:true,write:false,format:'iife',platform:'browser',minify:true,target:'es2022',plugins:[{name:'inline-worker',setup(build){build.onLoad({filter:/media-task\.js$/},async args=>({contents:(await readFile(args.path,'utf8')).replace("new URL('./media-worker.js', import.meta.url)",'window.__DRIX_MEDIA_WORKER_URL__'),loader:'js'}));}}]})).outputFiles[0].text;
+let css=await readFile(new URL('public/style.css',root),'utf8');
+for(const font of ['manrope-regular.ttf','manrope-bold.ttf']) css=css.replaceAll('assets/'+font,'data:font/ttf;base64,'+(await readFile(new URL('public/assets/'+font,root))).toString('base64'));
+let html=await studioPage();
+await writeFile(new URL('public/prueba-exportacion.html',root),html);
+for(const [asset,type] of [['studio.jpg','image/jpeg'],['podcast.jpg','image/jpeg'],['favicon.svg','image/svg+xml']]) html=html.replaceAll('assets/'+asset,'data:'+type+';base64,'+(await readFile(new URL('public/assets/'+asset,root))).toString('base64'));
+html += '\n<!-- Mediabunny 1.65.2, MPL-2.0. Source: https://github.com/Vanilagy/mediabunny/tree/v1.65.2\n' + (await readFile(new URL('public/vendor/Mediabunny-LICENSE.txt',root),'utf8')) + '\n-->';
+const escape=value=>value.replace(/<\/script/gi,'<\\/script');
+html=html.replace('<link rel="stylesheet" href="style.css">',`<style>${css}</style>`).replace('<script type="module" src="studio-entry.js"></script>',`<script>window.__DRIX_MEDIA_WORKER_URL__=URL.createObjectURL(new Blob([${escape(JSON.stringify(worker))}],{type:'text/javascript'}));const startPreview=()=>{${escape(main)}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',startPreview,{once:true});else startPreview();</script>`);
+await writeFile(new URL('public/prueba-webcodecs.html',root),html);
+for(const name of ['drix-clip-rapido.html','drix-clip-premium.html','drix-clip-demo.html']) await writeFile(new URL('../'+name,root),html);
+console.log('HTML de prueba autocontenido creado.');

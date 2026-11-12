@@ -1,0 +1,35 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const root=new URL('../',import.meta.url);
+export async function buildProductionPage(){
+ const original=await readFile(new URL('scripts/templates/original-index.html',root),'utf8');
+ const google=original.slice(original.indexOf('<button class="btn primary google-btn"'),original.indexOf('</button><a class="text-link demo-link"')+9);
+ const welcome=(await readFile(new URL('scripts/templates/welcome.html',root),'utf8')).replace('__GOOGLE_BUTTON__',google.replace('Empezar gratis con Google','Continuar con Google'));
+ let hero=await readFile(new URL('scripts/templates/member-hero.html',root),'utf8');
+ hero=hero.replace(/<div class="hero-actions">[\s\S]*?<p class="msg" id="authMsg" role="status"><\/p>/,'<div class="hero-actions"><a class="btn primary" href="#studioEditor">Crear mis clips <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h16m-5-5 5 5-5 5"/></svg></a><a class="text-link" href="#history">Mis creaciones</a></div>');
+ hero=hero.replace('href="#how"','href="#studioEditor"').replace('aria-label="Descubrir cómo funciona"','aria-label="Ir al editor"');
+ let editor=await readFile(new URL('scripts/studio-markup.html',root),'utf8');editor=editor.slice(0,editor.indexOf('<section class="my-creations"'));
+ editor=editor.replace(/<div class="studio-field-title lab-wide">Tu momento<\/div>[\s\S]*?<label class="lab-wide">Ajuste del video/, '<label class="lab-wide">Idioma del video<select id="lang"><option value="es">Español</option><option value="en">Inglés</option><option value="pt">Portugués</option><option value="">Detectar automáticamente</option></select></label><label class="lab-wide">Ajuste del video');
+ editor=editor.replace(/<label class="lab-wide" id="labCaptionField">[\s\S]*?<\/label>/,'<p class="studio-field-help lab-wide">Los subtítulos se crean a partir de la voz de tu video.</p>');
+ editor=editor.replace('<div class="studio-canvas">','<div class="studio-canvas" id="drop">');
+ editor=editor.replace('<div class="lab-actions">','<label class="check consent-check"><input type="checkbox" id="consent"><span>Este video es mío o tengo permiso para utilizarlo.</span></label><div class="lab-actions">');
+ editor=editor.replace(/<a id="labDownload"[\s\S]*?<p id="labSummary"[\s\S]*?<\/p>/,'');
+ const ids={preview:'studioEditor',testFile:'fileInput',labProject:'dropTitle',labFileInfo:'fileInfo',studioPlanBadge:'editorPlanName',labFormat:'outputFormat',labLength:'clipLength',labCount:'clipCount',labCountHint:'clipCountHint',labLayout:'layout',labQuality:'exportQuality',labShowCaption:'showCaptions',labRun:'startBtn',labCancel:'cancelBtn',labError:'alertBox',labStatus:'progressCard',labStage:'progressTitle',labFill:'progressFill',labProgressText:'progressText',labVideo:'sourcePreview'};
+ for(const [from,to]of Object.entries(ids))editor=editor.replaceAll(`id="${from}"`,`id="${to}"`).replaceAll(`for="${from}"`,`for="${to}"`);
+ let app=await readFile(new URL('scripts/templates/original-app.html',root),'utf8');
+ const status=app.slice(app.indexOf('<div class="card status"'),app.indexOf('\n\n      <div class="card">'));
+ const history=app.slice(app.indexOf('      <section class="card mt" id="history"'),app.lastIndexOf('    </section>'));
+ let prefix=original.slice(0,original.indexOf('<section id="viewLanding"'));
+ prefix=prefix.replace('<body>','<body class="session-pending">');
+ prefix=prefix.replace(/<nav class="desktop-nav"[\s\S]*?<\/nav>/,'<nav class="desktop-nav" data-visitor-nav aria-label="Navegación principal"><a href="#how">Cómo funciona</a><a href="#why">Por qué DRIX CLIP</a><a href="#plans">Planes</a></nav><nav class="desktop-nav" data-member-nav aria-label="Navegación del estudio" hidden><a href="#studioEditor">Crear clips</a><a href="#history">Mis creaciones</a><a href="#plans">Mi plan</a></nav>');
+ prefix=prefix.replace('id="headerCta">Empezar gratis','id="headerCta">Iniciar sesión');
+ prefix=prefix.replace(/<nav class="mobile-nav"[\s\S]*?<\/nav>/,'<nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil" hidden><a href="#how" data-visitor-link>Cómo funciona</a><a href="#why" data-visitor-link>Por qué DRIX CLIP</a><a href="#plans" data-visitor-link>Planes</a><a href="#studioEditor" data-member-link hidden>Crear clips</a><a href="#history" data-member-link hidden>Mis creaciones</a><a href="#plans" data-member-link hidden>Mi plan</a></nav>');
+ let suffix=original.slice(original.indexOf('<section id="plans"'));
+ suffix=suffix.replace('¿La vista previa genera clips?','¿Cómo creo mis primeros clips?').replace('La muestra permite probar formatos y estilos con subtítulos de ejemplo. Si eliges un video, se reproduce localmente y no se sube. Para generar clips y subtítulos de tu contenido, accede con Google y utiliza el estudio.','Accede con tu cuenta de Google, sube tu video y elige el formato, la duración y la cantidad de clips. Después encontrarás tus resultados en Mis creaciones.');
+ suffix=suffix.replace('src="interactions.js"','src="brand-interactions.js"');
+ const member=`<section id="viewApp" hidden>${hero}<div class="studio-account-status">${status}</div>${editor}<section id="results" class="results" aria-live="polite"></section>${history}</section>`;
+ const html=prefix+'<div id="sessionLoading" class="session-loading" role="status">Cargando tu espacio…</div>'+welcome+member+suffix;
+ await writeFile(new URL('public/index.html',root),html);
+ await writeFile(new URL('scripts/templates/member-premium-hero.html',root),hero);
+ return html;
+}
+await buildProductionPage();

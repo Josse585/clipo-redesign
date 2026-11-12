@@ -1,0 +1,45 @@
+/* DRIX CLIP — black + soft lime */
+:root{--bg:#080a08;--card:#101410;--card-2:#171d16;--text:#f2f7ef;--muted:#a5b09f;--line:#293328;--accent:#b9ee78;--accent-2:#d0f99b;--warn:#f4d77b;--danger:#ff8585;--radius:18px}
+body{background:radial-gradient(850px 520px at 78% -8%,#b9ee7818,transparent 62%),radial-gradient(680px 460px at -8% 70%,#8fbd5810,transparent 62%),var(--bg)}
+.top{background:#080a08ed;border-color:#263124}
+.brand-mark,.auth-symbol{color:#10150d;background:linear-gradient(135deg,#d7f9a6,#a8df62);box-shadow:0 0 28px #b9ee7830}
+.badge{color:#10150d;background:#b9ee78;border:0}
+.eyebrow{color:#d9f6b5;background:#b9ee7815;border:1px solid #b9ee7845}
+.pulse-dot{background:#c9f58b;box-shadow:0 0 12px #c9f58b}
+.hl{background:linear-gradient(90deg,#e0ffb4,#b9ee78 58%,#8fcf55);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ticks li{color:#e0e9da}.ticks li::before{color:var(--accent-2)}
+.landing-note{color:#9aa895}.note-icon,.auth-secure span{color:var(--accent)}
+.google-auth{background:linear-gradient(155deg,#141b12,#0b0e0a 78%);border-color:#34432d;box-shadow:0 24px 90px #0009,0 0 48px #b9ee7810}
+.auth-kicker{color:#c9ed9e}.auth-secure{border-color:#293328;color:#a5b09f}
+.card,.plan{background:linear-gradient(145deg,#121811,#0d110c);border-color:#293528;box-shadow:0 14px 38px #0003}
+input[type=email],input[type=password],select{background:#0a0e09;border-color:#34422f}
+input:focus,select:focus{outline-color:var(--accent)}
+.btn.primary{color:#11170c;background:linear-gradient(115deg,#d3f79e,#aee56b);box-shadow:0 8px 24px #b9ee7820}
+.btn.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn.ghost{border-color:#3b4936}.link{color:var(--accent-2)}.msg.ok{color:var(--accent-2)}
+.bar-fill{background:linear-gradient(90deg,#d0f99b,#91cb55)}
+.drop{background:#b9ee7808;border-color:#45583b}.drop:hover{border-color:#b9ee78;background:#b9ee7810}
+.plan.featured{border-color:#b9ee78;box-shadow:0 0 26px #b9ee7814,0 0 0 1px #b9ee78 inset}
+.plan li::before,.plan .current{color:var(--accent-2)}.plans-section{border-color:#293328}
+.banner.info{background:#b9ee7810;border-color:#b9ee7855}
+.toast{background:#141b12;border-color:#34432d}.clip{background:#101410;border-color:#293328}
+@media(prefers-reduced-motion:no-preference){.btn,.drop,.plan{transition:border-color .18s ease,background .18s ease,transform .18s ease,box-shadow .18s ease}.plan:hover{transform:translateY(-3px);border-color:#647b51}}
+
+/* Brighter electric lime accent */
+:root{--accent:#b7ff00;--accent-2:#caff33}
+body{background:radial-gradient(850px 520px at 78% -8%,#b7ff0022,transparent 62%),radial-gradient(680px 460px at -8% 70%,#b7ff0010,transparent 62%),var(--bg)}
+.brand-mark,.auth-symbol{background:linear-gradient(135deg,#d7ff65,#a8f000);box-shadow:0 0 30px #b7ff0050}
+.badge{background:#b7ff00;color:#0b1004}
+.eyebrow{color:#dfff91;background:#b7ff001b;border-color:#b7ff0060}
+.pulse-dot{background:#caff33;box-shadow:0 0 15px #b7ff00}
+.hl{background:linear-gradient(90deg,#e3ff9c,#caff33 48%,#a8f000);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ticks li::before,.note-icon,.auth-secure span{color:#caff33}
+.auth-kicker{color:#dfff91}
+.link,.msg.ok{color:#caff33}
+.btn.primary{background:linear-gradient(110deg,#d6ff62,#b7ff00 58%,#a0e900);color:#101600;box-shadow:0 8px 28px #b7ff0038}
+.btn.primary:hover{box-shadow:0 10px 34px #b7ff0055;filter:brightness(1.08)}
+.bar-fill{background:linear-gradient(90deg,#dfff75,#b7ff00)}
+.drop:hover{border-color:#b7ff00;background:#b7ff0018}
+.plan.featured{border-color:#b7ff00;box-shadow:0 0 30px #b7ff0020,0 0 0 1px #b7ff00 inset}
+.plan li::before,.plan .current{color:#caff33}
+.banner.info{background:#b7ff0014;border-color:#b7ff0066}
